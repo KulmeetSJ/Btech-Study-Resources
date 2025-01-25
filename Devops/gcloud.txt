@@ -1,0 +1,27 @@
+Buckets are basic containers that store data
+
+The Cloud Monitoring agent is a collectd-based daemon that gathers 
+system and application metrics from virtual machine instances 
+and sends them to Monitoring.
+By default, the Monitoring agent collects disk, CPU, network, and process metrics. 
+Configuring the Monitoring agent allows third-party applications to 
+get the full list of agent metrics.
+
+It is best practice to run the Cloud Logging agent on all VM instances.
+Its command is
+
+
+
+
+Cloud events are things that happen in your cloud environment.These might 
+be things like changes to data in a database, files added to a storage 
+system, or a new virtual machine instance being created.
+
+Events occur whether or not you choose to respond to them. You create a 
+response to an event with a trigger. A trigger is a declaration that you 
+are interested in a certain event or set of events. Binding a function to 
+a trigger allows you to capture and act on events.
+
+
+Google Cloud Pub/Sub is a messaging service for exchanging event data
+ among applications and services

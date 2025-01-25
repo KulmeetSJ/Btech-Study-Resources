@@ -1,0 +1,17 @@
+In software engineering, umbrella activities refer to the non-technical activities that support the software development process as a whole. These activities are essential to the success of any software project and are typically carried out throughout the entire software development life cycle.
+
+Here are some examples of umbrella activities in software engineering:
+
+Project management: This involves planning, organizing, and coordinating resources to achieve specific goals and objectives. Project management includes activities such as project planning, risk management, scheduling, and budgeting.
+
+Quality assurance: This involves ensuring that the software being developed meets the required quality standards. Quality assurance activities include testing, code review, and quality control.
+
+Configuration management: This involves managing changes to software and ensuring that all changes are properly tracked and documented. Configuration management activities include version control, release management, and change management.
+
+Documentation: This involves creating and maintaining documentation related to the software being developed. Documentation activities include creating user manuals, technical specifications, and design documents.
+
+Training: This involves providing training to end-users and developers on how to use the software being developed.
+
+Maintenance: This involves maintaining the software after it has been deployed. Maintenance activities include bug fixing, performance tuning, and updating software to meet changing requirements.
+
+These umbrella activities are critical to the success of software development projects, and they help ensure that software is developed efficiently, effectively, and with high quality.

@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+int main()
+{
+    int n, frame;
+    printf("Enter the no. of process : ");
+    scanf("%d", &n);
+    int s[n];
+    printf("Enter the processes : ");
+    for(int i = 0; i < n; i++)
+    {
+        scanf("%d", &s[i]);
+    }
+
+    printf("Enter the frame : ");
+    scanf("%d", &frame);
+    int ram[frame];
+    int LRU[frame];
+    for(int i = 0; i < frame; i++)
+    {
+        ram[i] = -1;
+        LRU[i] = -i; // for making initial priority in filling the pages
+    }
+    int fault = 0;
+    int hit = 0;
+
+    for(int i = 0; i < n; i++)
+    {
+        int temp = 0;
+        for(int j = 0; j < frame; j++)
+        {
+            if(ram[j] == s[i]) // page hit
+            {
+                hit++;
+                //reduce everyone's count except for p[j];
+                LRU[j] = 0;
+                for(int k = 0; k < frame; k++)
+                {
+                    if(k == j) continue;
+                    LRU[k]--;
+                }
+                temp = 1;
+                break;
+            }
+        }
+        if(temp == 0)//page fault
+        {
+            fault++;
+            //find the one that was least recently used;
+            int mn = 0;
+            for(int j = 0; j < frame; j++)
+                if(LRU[j] < LRU[mn]) mn = j;
+
+            ram[mn] = s[i];
+            LRU[mn] = 0;
+            for(int k = 0; k < frame; k++)
+            {
+                if(k == mn)continue;
+                LRU[k]--;
+            }
+        }
+    }
+
+    printf("\nTotal Page faults : %d", fault);
+    printf("\nTotal Page hits : %d", hit);
+
+    return 0;
+}

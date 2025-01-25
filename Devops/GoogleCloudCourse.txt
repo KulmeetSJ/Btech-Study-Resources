@@ -1,0 +1,524 @@
+Google Cloud -->
+
+7 categories of Google cloud service ->
+
+1. Compute - A variety of machine types that support any type of workload.
+
+2. Storage - Data storage and database options for structured/unstructured,
+             relational/non-relational data.
+
+3. Networking - Services that balance application traffic and provision security
+                rules.
+
+4. Cloud Operations - A suite of cross-cloud logging, monitoring,trace, and other
+                      service reliability tools.
+
+5. Tools - Services that help developers manage deployments and application 
+           build pipelines.
+
+6. Big Data - Services that allow you to process and analyze large datasets.
+
+7. Artificial Intelligence - A suite of APIs that run specific AI & ML tasks on
+                             Google cloud.
+
+
+APIs are application programming interfaces that you can call directly or via the 
+client libraries. Cloud APIs use resource-oriented design principles.
+We have to enable APIs ourselves if we make a new project.
+
+The Dialogflow API allows us to build rich conversational applications (e.g Google Assistant)
+without having to understand the underlying ML and natural language schema.
+
+------Cloud Shell----------->
+
+Cloud shell is a virtual machines that is loaded with development tools.It 
+offers a peristent 5GB home directory and runs on the Google Cloud. Cloud 
+Shell provides command-line acces to your Google Cloud Resources.
+
+-----gcloud commands------->
+
+gcloud is the command-line tool for Google Cloud.It comes pre-installed on Cloud Shell and supports tab-completion.
+
+gcloud auth list
+
+#Lists all the active accounts with this command
+
+gcloud config list project
+
+#Lists project id
+
+
+-------Regions and Zones ---->
+
+Certain Compute Engine resources live in regions or zones.
+A region is a specific geographical location where you can run your resources.
+Each region has one or more zones.
+
+Resources that live in a zone are referred to as zonal resources. Virtual machine Instances 
+and persistent disks live in a zone. If you want to assign a static IP address to an instance, the instance 
+must be in the same region as the static IP.
+
+
+------Running a instance in GOOGLE CLOUD------->
+
+Navigation Menu > Compute Engine > VM Instances
+
+Create Instance
+
+Do things accordingly as per need and then remember to allow HTTP traffic in Firewall.
+
+Click on Create.
+
+Now launch an SSH client by clicking on SSH , it will open a new terminal.
+
+Installing a NGINX web server ------->
+
+NGINX is the most popular web servers in the world.
+
+sudo su -
+
+# To get root access
+
+apt-get update
+
+# Update ur OS
+
+apt-get install nginx -y
+
+ps auwx | grep nginx 
+
+# To confirm that nginx is running.
+
+Now go to your instance page and visit the IP address. A nginx webpage should be visible now.
+
+---Creating a new instance with gcloud -------->
+
+Instead of using creating a vm instance using Google Cloud console , we can use gcloud also.
+Cloud shell is a Debian-based Virtual machine loaded with all development tools you'll need and
+offers a 5-GB home directory.
+
+gcloud compute instances create gcelab2 --machine-type n1-standard-2 --zone us-central1-f
+
+This will create a new instance.
+
+To see all defaults , run
+
+gcloud compute instances create --help
+
+To exit help press Ctrl+C
+
+Connecting SSH with gcloud->
+
+gcloud compute ssh gcelab2 --zone us-central1-f
+
+exit
+
+-------Compute Engine ---------->
+
+Compute Engine lets you create and run VMs on Google Infrastructue. It offers scale,
+performance,and value that allows you yo easily launch large compute clusters on Google's Infrastructure.
+
+Create a Virtual machine instance following same steps as above.
+In Machine Configuration choose N1.
+
+In Boot Disk change OS to Windows Server
+and Version -> Windows Server 2012 R2 Datacenter.
+Create instance
+
+Enable Cloud shell
+
+REMOTE DESKTOP (RDP) into the Windows Server
+
+To see whether the server instance is ready for an RDP connection, run this command
+
+gcloud compute instances get-serial-port-output instance-1
+
+A prompt will come press n
+
+Run it again and again until instance is ready for use.
+
+
+To set a password for logging into RDP
+
+gcloud compute reset-windows-password [instance] --zone us-central1-a --user [username]
+
+[instance] = instance-1
+[username] = admin
+
+RDP username and password will reset and display on ur machine.
+
+Now, connect to server through RDP using Chrome RDP for Google Cloud Platform extension.
+
+Click on RDP and then enter your credentials.
+A new Windows Machine will open in RDP
+
+
+-----------Cloud Shell and gcloud---------->
+
+gcloud auth list 
+
+#List the active account name
+
+gcloud config list project
+
+#Lists the project ID
+
+gcloud config get-value compute/zone
+
+gcloud config get-value compute/region
+
+#To see what our default region and zone settings are
+
+#To identify our default region and zone we will run this command
+
+gcloud compute project-info describe --project <your_project_id>
+
+
+
+Set Environment Variable ---->
+
+Environment variables define your environment and help save time when you write
+scripts that contain APIs or executables.
+
+Create an evironment variable to store your project id
+
+export PROJECT_ID=<your_project_id>
+
+#Make sure to give no gap between equals
+
+Create an environment variable to store your zone 
+
+export ZONE=<your_zone>
+
+To verify that variables were set properly -->
+
+echo $PROJECT_ID
+echo $ZONE
+
+
+Creating a VM with gcloud
+
+gcloud compute instances create gcelab2 --machine-type n1-standard-2 --zone $ZONE
+
+
+gcloud compute -- allows us to manage our Compute ENgine resources in a format that's
+simpler than the Compute Engine API
+
+instances create --->creates a new instance
+gcelab2 --> Name of VM
+
+--machine-type ---- specifies the machine type as n1-standard-2
+
+# To open help
+
+gcloud compute instances create --help
+
+
+gcloud offers simple usage guidelines that are available by adding the -h flag (for help)
+
+gcloud -h
+
+gcloud config --help
+
+gcloud help config
+
+The results of above 2 commands are equivalent.
+
+gcloud config list
+
+gcloud config list --all
+
+gcloud components list
+
+
+
+Install a new component---->
+
+gcloud interacrive has auto prompting for commands and flags and displays inline 
+help snippets 
+
+sudo apt-get install google-cloud-sdk
+
+gcloud beta interactive
+
+In interactive mode press TAB to complete file path and resource arguments.
+
+gcloud compute instances describe <your_vm>
+
+exit
+
+# To exit from interactive mode
+
+
+Connect to your instance VM with SSH
+
+gcloud compute ssh command provides a wrapper around SSH, which takes care of
+authentication and the mapping of instance names to IP addresses
+
+gcloud compute ssh gcelab2 --zone $ZONE
+
+Y
+
+exit
+
+
+Using Home Dir
+
+cd $HOME
+
+vi ./.bashrc
+
+
+
+--------Kubernetes------->
+
+Google Kubernetes Engine (GKE) provides a managed environment for deploying,managing, and scaling
+your containerized apps using Google infrastructure.The Kubernetes Engine environment consists of multiple machines grouped
+to form a container cluster.
+
+Kubernetes provides the mechanism through which we interact with our container cluster.
+
+
+Set default compute zone to us-central1-a
+
+gcloud config set compute/zone us-central1-a
+
+
+Create GKE cluster
+A cluster consists of at least one cluster master machine and multiple worker machines called nodes.
+Nodes are Compute Engine Virtual Machine(VM) instances that run the Kubernetes processes necessary to make them part of the cluster.
+
+To create a cluster run this command
+
+gcloud container clusters create [Cluster-name]
+
+A cluster is the foundation of GKE , the Kubernetes objects that represent containerized apps all run on top of a cluster.
+
+Authenticating the cluster.
+To authenticate the cluster , run this command
+
+gcloud container clusters get-credentials [cluster-NAME]
+
+Deploy an app on the cluster
+
+kubectl create deployment hello-server --image=gcr.io/google-samples/hello-app:1.0
+
+The kubernetes commannd creates a Deployment object that represents hello-server.
+
+To create a Kubernetes service,which is a Kubernetes resource that lets you expose your app to external traffic,
+run the following kubectl expose command
+
+kubectl expose deployment hello-server --type=LoadBalancer --port 8080
+
+--port specfies the port that the container exposes/
+type= "LoadBalancer" create a compute engine load balancer for ur container.
+
+To inspect the hello-server
+
+kubectl get service
+
+http://[EXTERNAL_IP]:8080
+
+To delete the cluster run the following commmand
+
+
+gcloud container clusters delete [CLUSTER-NAME]
+
+
+
+-----Set up Network and HTTP Load Balancers_-------->
+
+Set default zone 
+gcloud config set compute/zone us-central1-a
+
+Set default region
+gcloud config set compute/region us-central1
+
+Create Multiple Server Instances----->
+
+Create 3 VM instances and install Apache on them , add a firewall rule that allows HTTP traffic to reach the instances
+
+gcloud compute instances create www1 \
+  --image-family debian-9 \
+  --image-project debian-cloud \
+  --zone us-central1-a \
+  --tags network-lb-tag \
+  --metadata startup-script="#! /bin/bash
+    sudo apt-get update
+    sudo apt-get install apache2 -y
+    sudo service apache2 restart
+    echo '<!doctype html><html><body><h1>www1</h1></body></html>' | tee /var/www/html/index.html"
+
+
+gcloud compute instances create www2 \
+  --image-family debian-9 \
+  --image-project debian-cloud \
+  --zone us-central1-a \
+  --tags network-lb-tag \
+  --metadata startup-script="#! /bin/bash
+    sudo apt-get update
+    sudo apt-get install apache2 -y
+    sudo service apache2 restart
+    echo '<!doctype html><html><body><h1>www2</h1></body></html>' | tee /var/www/html/index.html"
+
+gcloud compute instances create www3 \
+  --image-family debian-9 \
+  --image-project debian-cloud \
+  --zone us-central1-a \
+  --tags network-lb-tag \
+  --metadata startup-script="#! /bin/bash
+    sudo apt-get update
+    sudo apt-get install apache2 -y
+    sudo service apache2 restart
+    echo '<!doctype html><html><body><h1>www3</h1></body></html>' | tee /var/www/html/index.html"
+
+
+
+CREATE A FIREWALL RULE TO ALLOW EXTERNAL TRAFFIC TO VM INSTANCES 
+
+gcloud compute firewall-rules create www-firewall-network-lb \
+    --target-tags network-lb-tag --allow tcp:80
+
+NOW YOU NEED TO GET THE EXTERNAL IP ADDRESSES OF YOUR INSTANCES AND VERIFY THAT THEY ARE RUNNING
+
+RUN THE FOLLOWING CMD TO LIST INSTANCES
+
+gcloud compute instances list
+
+VERIFY THAT EACH INSTANCE IS RUNNING WITH curl
+
+
+curl http://[IP-ADDRESS]
+
+cURL stands for client URL , is a cmd line tool that developers use to transfer data to and from a server.
+It lets us talk to a server by specifying the location(URL) and the data we want to send.
+
+
+CONFIGURE THE LOAD BALANCING SERVICE-->
+
+When we configure the load balancing service our VM instances will receive packets that are destined
+for the static external IP address we configure. Instances made with a Compute Engine image are automatically configured to handle this IP address.
+
+CREATE A STATIC EXTERNAL IP FOR LOAD BALANCER
+
+gcloud compute addresses create network-lb-ip-1 \--region us-central1
+
+ADD A LEGACY HTTP HEALTH CHECK RESOURCE 
+
+gcloud compute http-health-checks create basic-check
+
+ADD A TARGET POOL IN THE SAME REGION AS UR INSTANCES
+
+gcloud compute target-pools create www-pool \
+    --region us-central1 --http-health-check basic-check
+
+ADD INSTANCES TO THE POOL
+
+gcloud compute target-pools add-instances www-pool \
+    --instances www1,www2,www3
+
+ADD A FORWARDING RULE
+
+gcloud compute forwarding-rules create www-rule \
+    --region us-central1 \
+    --ports 80 \
+    --address network-lb-ip-1 \
+    --target-pool www-pool
+
+
+SENDING TRAFFIC TO INSTANCES---->
+
+To view the external IP address
+
+gcloud compute forwarding-rules describe www-rule --region us-central1
+
+Use curl command to access the external IP address,replacing IP_ADDRESS with an external IP address from the previous command
+
+while true; do curl -m1 IP_ADDRESS; done
+
+The response from curl command alternates randomly among the three instances.
+
+USE Ctrl+C to stop this cmd.
+
+
+CREATE AN HTTP LOAD BALANCER---->
+
+HTTP LOAD BALANCING is implemented on GOOGLE FRONT END (GFE). GFEs are distributef globally and operate together using Google's global network and control plane.
+We can configure URL rules to route some URLs to one set of instances and route other URLs to other instances.
+Requests are always routed to the instance group that is closest to the user,if that group has enough capacity and is appropriate for the request.
+
+To set up a load balancer with a Compute Engine backend, our VMs need to be in an instance group. The managed instance group provides VMs running the backend servers of an external HTTP load balancer.
+
+First ,create the load balancer template.
+
+gcloud compute instance-templates create lb-backend-template \
+   --region=us-central1 \
+   --network=default \
+   --subnet=default \
+   --tags=allow-health-check \
+   --image-family=debian-9 \
+   --image-project=debian-cloud \
+   --metadata=startup-script='#! /bin/bash
+     apt-get update
+     apt-get install apache2 -y
+     a2ensite default-ssl
+     a2enmod ssl
+     vm_hostname="$(curl -H "Metadata-Flavor:Google" \
+     http://169.254.169.254/computeMetadata/v1/instance/name)"
+     echo "Page served from: $vm_hostname" | \
+     tee /var/www/html/index.html
+     systemctl restart apache2'
+
+
+Create  a managed instance group based on the template
+
+gcloud compute instance-groups managed create lb-backend-group \
+   --template=lb-backend-template --size=2 --zone=us-central1-a
+
+
+Create the fw-allow-health-check firewall rule. This is an ingress rule that allows taffic from the Google Cloud health checking systems(130.211.0.0/22 and 35.191.0.0/16).
+
+
+gcloud compute firewall-rules create fw-allow-health-check \
+    --network=default \
+    --action=allow \
+    --direction=ingress \
+    --source-ranges=130.211.0.0/22,35.191.0.0/16 \
+    --target-tags=allow-health-check \
+    --rules=tcp:80
+
+Set up a global static external IP address that our customers use to reach load balancer.
+
+gcloud compute addresses create lb-ipv4-1 \
+    --ip-version=IPV4 \
+    --global
+
+
+Note the IPv4 that was reserved
+
+gcloud compute addresses describe lb-ipv4-1 \
+    --format="get(address)" \
+    --global
+
+#34.111.153.228 in our case
+
+Create a health check for the load balancer
+
+gcloud compute health-checks create http http-basic-check \
+    --port 80
+
+Create a backend service
+
+gcloud compute backend-services create web-backend-service \
+    --protocol=HTTP \
+    --port-name=http \
+    --health-checks=http-basic-check \
+    --global
+
+Add instance group as the backend to the backend service.
+
+gcloud compute backend-services add-backend web-backend-service \
+    --instance-group=lb-backend-group \
+    --instance-group-zone=us-central1-a \
+    --global
+

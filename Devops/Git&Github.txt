@@ -1,0 +1,101 @@
+git init
+# to initiate in local system
+
+git clone
+
+git status
+
+rm -r .git/ 
+#to remove a folder/repo from git
+
+touch hello.py
+#To create a new file
+
+git clone <link>
+
+
+git add Readme.md hello.py
+#To make it modified
+
+git commit
+#commits are on local system only , but it will open a text editor to add text
+so to avoid that use
+
+git commit -m "Adding hello"
+
+git push origin main
+#to make changes globally
+
+#but if we want to restore something before commiting anything we use
+
+git restore --staged hello.py
+
+#To add gitignore we use
+
+touch .gitignore
+
+#in this we can write *.cpp --> this command will ignore all .cpp files and will
+not be shown in staging area
+
+git checkout -f
+#if we add something by mistake in any file in our repo , we can run this command
+to restore 
+
+
+git remote -v
+# it displays the server we are hosting on
+
+git remote set-url origin <url>
+
+git remote -v
+
+
+git log 
+
+#shows all the changes made in the repo
+
+git log -n ...where n can be any natural number
+#shows n no. of commits only
+
+git log -p -n
+# shows what changes were mode more elaborately
+
+git diff
+
+# shows changes made by comparing it with previous commit and current working area
+
+git diff --staged
+
+# compares with staged and last commit
+
+nano hello.py
+#opens the file 
+
+git pull origin main
+#pulls all the changes made in the website
+
+
+BRANCHES
+
+git branch
+#displays all the branches
+
+
+git branch welcome
+#creates a welcome branch
+
+git checkout welcome
+#To move from one branch to another , whatever change we make in this branch
+will not be reflected in main branch
+
+git merge welcome 
+#To merge 2 branches
+
+git branch -d welcome
+#Deletes the branch
+
+git checkout -b welcome
+#Creates and moves to branch in 1 command only
+
+These branches will not be reflected in github
+

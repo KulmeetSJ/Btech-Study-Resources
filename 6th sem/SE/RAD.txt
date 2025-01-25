@@ -1,0 +1,13 @@
+The Rapid Application Development (RAD) model is a type of software development process that prioritizes rapid prototyping and iterative development over traditional, sequential software development processes. The RAD model is often used in projects where speed and flexibility are essential, such as in startups or when developing software prototypes.
+
+The RAD model typically involves the following phases:
+
+1. Requirements planning: In this phase, the project requirements are identified and prioritized. The requirements are then used to develop the system architecture and design.
+
+2. Rapid prototyping: In this phase, a prototype of the software is created. This prototype is used to gather feedback from stakeholders and to refine the system requirements.
+
+3. Iterative development: In this phase, the software is developed iteratively. Each iteration involves the implementation of new features or functionality, followed by testing and feedback from stakeholders.
+
+4. Cutover: In this phase, the software is deployed and integrated with any existing systems. The system is then tested and any necessary modifications are made.
+
+The RAD model emphasizes collaboration between developers and stakeholders, with a focus on delivering a working software prototype as quickly as possible. The model is often used for projects that have a tight timeline or require rapid adaptation to changing requirements. The RAD model can be an effective approach for software development when applied appropriately, but it may not be suitable for projects that require a high level of control or for systems that require a high degree of reliability or security.

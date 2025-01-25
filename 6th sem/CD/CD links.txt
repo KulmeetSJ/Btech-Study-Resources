@@ -1,0 +1,29 @@
+ Passes in Compiler: https://youtu.be/geSNUl7Gnpw
+Passes in GCC: https://youtu.be/K4-B6Z4-VQg
+Cross Compiler: https://youtu.be/KeYG-lLDXUM
+Compiler Construction Tools: https://youtu.be/3IhR4_pCeMQ
+Lex_1: https://youtu.be/AnATyNsKfaA
+Lex_2: https://youtu.be/JZ9ffLYRWy4
+
+ Parsing: https://youtu.be/hCdO5DneKGU
+Types of Parsing: https://youtu.be/W-YOtjVgOZQ
+Recursive Descent Parsing: https://youtu.be/jDX6Cm6n-GY
+Example of Recursive Descent Parsing: https://youtu.be/KqLJiZTODFw
+Predictive Parsing: https://youtu.be/cOiyggYOTis
+Calculation of FIRST: https://youtu.be/1403J1uaKYo
+ Follow Function: https://youtu.be/052xTVmBs1A
+Calculation of Follow: https://youtu.be/jypot7FbeQw
+Construction of Predictive Parsing Table: https://youtu.be/Xk9XFAb6Ylg
+
+Implementation of Predictive Parser:https://youtu.be/gjFYxSygww8
+LL(1) Parsing Table: https://youtu.be/CE9SI7jS1gQ
+Shift Reduce Parsing: https://youtu.be/L3wGlA5A-ME
+Finding LR(0) Items:https://youtu.be/YULmOlF0sN4
+Construction of LR(0) Parsing Table: https://youtu.be/2YNC8LooPe8
+Finding LR1 Items:https://youtu.be/OACyXng9IIw
+Construction of CLR or LR(1) Parsing Table:https://youtu.be/ME2WiZtk9K4
+ https://youtu.be/2rWJbBjG6mI
+ https://youtu.be/4UTwY90pvwk
+ https://youtu.be/tJeXvkxS4Dw
+ https://youtu.be/ncwElu4zvrI
+ https://youtu.be/l_I51kjh2Cc

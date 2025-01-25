@@ -1,0 +1,11 @@
+Decision tree and decision table are both commonly used techniques in decision-making and problem-solving in various fields, including software engineering. Here are the differences between the two:
+
+1. Representation: A decision tree is a graphical representation of a decision-making process, where each node represents a decision, and each branch represents an outcome. On the other hand, a decision table is a tabular representation of a decision-making process, where each row represents a combination of conditions, and each column represents an action.
+
+2. Complexity: Decision trees can be complex to create and understand, especially when dealing with a large number of decisions and outcomes. Decision tables, on the other hand, are relatively easy to create and understand, even with a large number of conditions and actions.
+
+3. Applicability: Decision trees are more suitable for problems that have a small number of decisions and outcomes, while decision tables are more suitable for problems that have a large number of conditions and actions.
+
+4. Flexibility: Decision trees are less flexible in terms of making changes, as changes in one part of the tree may require modifications to the entire tree. Decision tables, on the other hand, are more flexible in terms of making changes, as changes in one row or column can be made without affecting the entire table.
+
+In summary, decision trees and decision tables are both useful tools for decision-making and problem-solving, but they differ in their representation, complexity, applicability, and flexibility. The choice between the two depends on the specific problem and the requirements of the decision-making process.

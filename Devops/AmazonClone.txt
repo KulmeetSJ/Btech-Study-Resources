@@ -1,0 +1,603 @@
+First Install Sanity.io in your backend Folder using these commands
+
+cd .\SMA_Backend\
+
+//To run npm commands install nodejs and then add NodeJs extension pack restart VSC
+// Change npm file -g to --location=global to remove warning
+
+
+
+npm install -g @sanity/cli 
+
+// Now to get permission to run sanity commands
+Perform these 3 steps
+set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+Get-ExecutionPolicy
+Get-ExecutionPolicy -list 
+
+sanity --version
+
+
+
+sanity init --project-plan boosted-free-2021-12-08
+
+Login with google 
+Create new project 
+Name project
+Blank project
+
+A new folder with project name will be created
+In that folder start sanity
+
+
+sanity start
+
+
+You'll get a url now
+Login to that url
+
+Now to stop it running we will press CTRL + C
+
+sanity manage
+
+This opens a newly created project in sanity studio
+As we can see we got new files and folders in our directory
+
+
+Now create a new user.js inside schema
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+wsl --install -d Ubuntu
+
+Change it to wsl 2
+
+wsl --set-version Ubuntu 2
+
+Now installing nodejs on wsl
+
+sudo apt-get install curl
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+command -v nvm
+
+nvm ls
+
+nvm install --lts
+
+nvm install node
+
+nvm ls
+
+nvm --version
+node --version
+
+nvm is node version manager
+
+
+Install Remote Devlopment extension pack
+
+This splits VS Code into a “client-server” architecture, 
+with the client (the VS Code user interface) running on your Windows 
+operating system and the server (your code, Git, plugins, etc) running 
+"remotely" on your WSL Linux distribution.
+
+
+Creating REACT APP-->
+
+
+mkdir ReactProjects
+
+cd ReactProjects
+
+npx create-react-app my-app
+
+
+npx is the package runner used by npm to execute packages in place of 
+a global install. It basically creates a temporary install of React so 
+that with each new project you are using the most recent version of React
+
+cd my-app
+
+npm start
+
+This will open webpage
+Press Ctrl+C to stop
+
+When u r ready to deploy your website use this command which will create a build of your app in the "build folder"
+
+
+npm run build
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+
+Installing nvm in windows-->
+
+C:\Users\Hp\AppData\Roaming\nvm
+
+in powershell->
+
+nvm ls 
+
+
+nvm install latest
+
+nvm use version
+
+npm install -g create-react-app
+
+npm i tar
+
+to remove error
+
+create-react-app clone
+
+// clone is name of my app
+
+
+cd clone
+
+npm start
+
+CTRL+C
+
+Now go in clone folder
+and then in src folder
+
+Delete 3 files App.test.js , logo.svg , setupTests.js
+
+remove all the contents of app.css file
+
+Remove unnecessary code From App() function of App.js and add the following code
+
+return <div className="app">Hello World!</div>;
+
+Add the following code to index.css.
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+It helps in tackling various formatting issues.
+
+
+Commmit all the changes
+
+
+
+////////////NOW OUR REACT APP IS READYY /////////////////////////
+
+
+
+
+-----------------REACT ROUTER---------------------->
+
+React is a single page application. Which means that it doesn’t support 
+multiple routes by default. Routing is the ability to move between 
+different parts of an application when a user enters a URL or clicks an 
+element (link, button, icon, image etc) within the application. It enables 
+us to transition from one view to another.
+
+
+in order to enable navigation in our application, we’ll take the aid of a
+node package named react-router-dom.
+
+npm install react-router-dom@6
+
+ADD These 3 lines in index.js inside src
+
+After 2nd line ->
+
+import { BrowserRouter } from "react-router-dom";
+
+After 10th line ->
+
+<BrowserRouter>
+      <App />
+</BrowserRouter>
+
+Commit the changes
+
+Now modify src/App.js file
+
+import { Routes, Route, Link } from "react-router-dom";
+
+//1st line
+
+
+Create React Components now-->
+
+Components are independent and reusable bits of code. 
+They serve the same purpose as JavaScript functions but work in isolation 
+and return HTML via a render function.
+
+Traditionally, every component has a .js file and a .css file
+
+By writing a javascript function, we can create a functional component in 
+React Apps.
+
+function Home() {
+  return <div className="home">Hello World Again!!</div>;
+}
+
+
+////////////CREATING NAV BAR///////////////////
+
+We need a couple of icons in the navigation bar, like the search icon and 
+the basket icon. React has a UI framework called Material-UI, which helps 
+in building our frontend. Install the @material-ui/core and the 
+@material-ui/icons packages.
+
+
+npm install @mui/material @emotion/react @emotion/styled
+
+npm install @material-ui/icons
+
+Drawer is a material UI component that gives access to supplementary contents
+ on a page. It can be anchored from the Top, Bottom, Left, and Right, 
+that is our Drawer can be displayed on any part of the page and this can
+ be done by passing a prop called anchor and setting it to either Top, 
+Bottom, Left, and Right.
+
+npm install stripe --save
+
+
+npm install @stripe/react-stripe-js @stripe/stripe-js
+
+npm install -g firebase-tools
+
+
+*
+{
+  "functions": {
+    "source": "functions"
+  }
+}
+*/
+
+
+
+
+
+ const [{ basket, user }, dispatch] = useStateValue();
+
+to
+
+const [{ user }] = useStateValue();
+
+Changed Payment.js from
+
+
+
+
+
+
+
+import React, { useEffect } from "react";
+import "./App.css";
+import Header from "./Header";
+import Home from "./Home";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import Checkout from "./Checkout";
+import Login from "./Login";
+import Payment from "./Payment";
+import Orders from "./Orders";
+import { auth } from "./firebase";
+import { useStateValue } from "./StateProvider";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const promise = loadStripe(
+  "pk_test_51HPvU9DFg5koCdLGJJbNo60QAU99BejacsvnKvT8xnCu1wFLCuQP3WBArscK3RvSQmSIB3N0Pbsc7TtbQiJ1vaOi00X9sIbazL"
+);
+
+
+function App() {
+  const [dispatch] = useStateValue();
+
+  useEffect(() => {
+    // will only run once when the app component loads...
+
+    auth.onAuthStateChanged((authUser) => {
+      console.log("THE USER IS >>> ", authUser);
+
+      if (authUser) {
+        // the user just logged in / the user was logged in
+
+        dispatch({
+          type: "SET_USER",
+          user: authUser,
+        });
+      } else {
+        // the user is logged out
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      }
+    });
+
+  }, []);
+
+  return (
+    <Router>
+      <div className="app">
+        <Link>
+          <Route path="/orders">
+            <Header />
+            <Orders />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/checkout">
+            <Header />
+            <Checkout />
+          </Route>
+          <Route path="/payment">
+            <Header />
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
+          </Route>
+          <Route path="/">
+            <Header />
+            <Home />
+          </Route>
+        </Link>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+If you are running in the root of a site, for instance https://example.com/manifest.json or https://test.example.com/manifest.json you can use "start_url": "/".
+
+However, this will also map https://example.com/test/manifest.json to https://example.com/, which fails because it's in a folder outside the scope of the manifest.
+
+Instead, if you are using a sub-directory you need to set both a scope and the start_url:
+
+"start_url": "./"
+"scope": "."
+
+
+<Route path="/orders" element={<Orders />} />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useEffect } from "react";
+import "./App.css";
+import Header from "./Header";
+import Home from "./Home";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import Checkout from "./Checkout";
+import Login from "./Login";
+import Payment from "./Payment";
+import Orders from "./Orders";
+import { auth } from "./firebase";
+import { useStateValue } from "./StateProvider";
+//import { loadStripe } from "@stripe/stripe-js";
+//import { Elements } from "@stripe/react-stripe-js";
+
+//const promise = loadStripe(
+//"pk_test_51HPvU9DFg5koCdLGJJbNo60QAU99BejacsvnKvT8xnCu1wFLCuQP3WBArscK3RvSQmSIB3N0Pbsc7TtbQiJ1vaOi00X9sIbazL"
+//);
+
+function App() {
+  // eslint-disable-next-line
+  const [{ }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    // will only run once when the app component loads...
+
+    auth.onAuthStateChanged((authUser) => {
+      console.log("THE USER IS >>> ", authUser);
+
+      if (authUser) {
+        // the user just logged in / the user was logged in
+
+        dispatch({
+          type: "SET_USER",
+          user: authUser,
+        });
+      } else {
+        // the user is logged out
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      }
+    });
+    // eslint-disable-next-line
+  }, []);
+
+  return (
+    <Router>
+      <div className="app">
+        <Routes>
+          
+          <Route path="/orders" element={<><Header/><Orders /></>} />
+          <Route path="/" element={<Header />} />
+          <Route path="/login" element={<Login />} />
+
+          <Route path="/" element={<Header />} />
+          <Route path="/checkout" element={<Checkout />} />
+
+
+          <Route path="/" element={<Header />} />
+          <Route path="/payment" element={<Payment />} />
+
+          <Route path="/" element={<Header />} />
+          <Route path="/" element={<Home />} />
+
+
+
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+
+
+
+
+APpppppppppppppppppppppppppppppppppp JSSSSSSSSSSSSSS 2
+
+
+
+
+
+
+
+import React, { useEffect } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./Home";
+import Header from "./Header";
+import Login from "./Login";
+import { auth } from "./firebase";
+import { useStateValue } from "./StateProvider";
+
+
+function App() {
+  // eslint-disable-next-line
+  const [{ }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    // will only run once when the app component loads...
+
+    auth.onAuthStateChanged((authUser) => {
+      console.log("THE USER IS >>> ", authUser);
+
+      if (authUser) {
+        // the user just logged in / the user was logged in
+
+        dispatch({
+          type: "SET_USER",
+          user: authUser,
+        });
+      } else {
+        // the user is logged out
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      }
+    });
+    // eslint-disable-next-line
+  }, []);
+
+
+  return (
+    <div className="app">
+      <Router>
+        <Routes>
+          <Route path="/" element={<><Header /><Home /></>} />
+          <Route path="/login" element={<><Header /><Login /></>} />
+
+
+        </Routes>
+      </Router>
+    </div>
+  );
+}
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <title>React App</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+</body>
+
+</html>

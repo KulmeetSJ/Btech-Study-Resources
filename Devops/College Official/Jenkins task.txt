@@ -1,0 +1,350 @@
+
+#######  Task 1 ######
+1. Create new job or item
+2. Enter an item name :Job1
+3. Choose freestyle project
+4. OK
+5. configure the Job1
+6. Choose Build section
+7. Add build step
+8. Execute shell or Execute windows batch command(on case of windows)
+9. In command field type: echo "My first task in Jenkins"
+10. Save
+11. For executing the Job1, go to Job1 and click on "Build Now"
+//Here Build the Job means executing the Job
+12. Check the Out using Build History.
+
+
+
+######## Task 2 ##########
+1. Create Job2
+2. Freestyle Project
+3. OK
+4. Configure
+5. Build
+6. Add build step
+7. Execute shell
+8. Command: date>> /tmp/date.txt
+9. Save
+10. Build Now
+// check the date.txt in tmp 
+
+
+######## Task 3 #######
+//Create User
+1. Manage Jenkins
+2. Manage Users
+3. Create User (create some users)
+
+######### Task 4 ########
+//security in Jenkins
+1. Manage Jenkins
+2. Configure Global Security
+3. Authorization
+4. Matrix-based Security or Project-based security
+5. Add user if you required
+6. Assign the previlages
+7. Logout and log-in again with different user and explore.
+
+########  Task 5 #########
+//for mantaining the log file
+1. Manage Jenkins
+2. Manage Plugins
+3. Search Audit Trail plugin
+4. Choose Audit Trail and install without restart
+5. once it is installed go to Manage Jenkins
+6. Configure Systems
+7. Global properties->Audit trail
+8. Add Logger->log file
+9. Add Log Location: /tmp/jenkinsAudir.log
+10. Log file sizeMB: 25
+11. Log file count: 5
+12. Save
+// After executing any job you can check the log file /tmp/jenkinsAudit.log
+
+
+####### Task 6 ##########
+//Notifications
+1. Manage Jenkins
+2. Configure Systems
+3. Extended E-mail Notifications
+4. SMTP server: smtp.gmail.com
+5. Advanced
+6. Check Use SMTP Authentication
+7. Username : abc@gmail.com
+8. Password : *******
+9. Use SSl check
+10.SMTP port: 465
+11.Default recipient :abc@gmail.com
+12.Save
+
+
+############ Task 7 ############
+// Notificatio for a Job
+1. Select a Job
+2. Configure
+3. Post-build Actions
+4. Editiable Email Notification
+5. Project recipient list: abc@gmail.com
+6. Advanced
+7. Trigger
+8. Add a trigger(recipient list)
+9. Save
+
+
+##################################
+//Scheduling the Jobs(Three ways)
+a.	Timer
+b.	Poll SCM
+c.	Pipeline
+##################################
+
+############# Task 8 #############		
+//Timer
+1. Choose any Job
+2. Configure
+3. Build Trigger
+4. Build periodically
+// little bit Learn about, what is cron job?
+5. Type in schedule: */2 * * * *
+// every two minutes it will execute the job
+6. Save
+7. Check the build history, in output console check that the job is    started by timer, not by the user.
+
+
+############## Task 9 ###############
+//Poll SCM, pull the code from github and compile every two minutes or any changes occour then only it will compile.
+1. Create new Job (job_pollSCM_Demo)
+2. Freestyle project
+3. OK
+4. configure
+5. Source code management
+6. git
+7. Repositories
+8. Repository URL: copy and paste Git Repository URL
+// any commits happens, then only it will build
+9. Save
+10.Configure
+11. Build Trigger
+12. check Poll SCM
+13. Schedule: */2****
+14. Save 
+//perform some commit on Github and check the reflection on jenkins
+//check the workspace at /var/lib/jenkins/workspace/
+cd /var/lib/jenkins/workspace/
+################ Task 10 ################
+Delivery Pipeline for the project
+#########################################################################
+01(Compile)->02(Code Review)->03(Unit Test Code)->04(Metric Check)->05 (Package Check)->06(Deploy)
+#########################################################################
+01=>Compile: Compiles the code pulled from github repository.
+02=>Code Review: Review the compiled code to check whether the code meets the organization's standard
+03=> Unit Test Code: Perform unit test case using Junit Plugin
+04=> Metric Check: Calculate the percentage of code accessed by testing using Cobertura Plugin
+05=>Package Check: Prepare a packaged code that can be deployed on any machine.
+06=>Deploy: Specify the path to deploy the application.
+#########################################################################
+Use the link: edureka-git/DevOpsClassCodes
+Maven(build automation tool)
+
+######## Task 10.01 #############
+//compile job
+1. Create Job "DevCompile"
+2. Freestyle project.
+3. ok
+4. configure.
+5. Source Code management.
+6. git
+7. Repository URL: https://github.com/edureka-git/DevOpsClassCodes.git
+8. save
+9. jenkins->manage jenkins->Global Tool Configuration
+10.JDK
+11.Add JDK
+12.Name: myjava
+13.Install automatically
+14.version: java SE Development kit 8u152
+15.check I agree
+// you have to give oracle account details, if you don't have just create one.
+16. Maven
+17. Add Maven
+18. Name: mymaven->check Install Automatically
+19. Save
+20. configure DevCompile job
+21. Build->Add build step->invoke top-level Maven targets.
+22. maven version->mymaven
+23. Goals->compile.
+24. Save.
+25. Build Now.
+26. Check the Output console.
+
+
+############################ Task 10.02 #############################
+//Code review
+1. create job "CodeReview".
+2. Freestyle project.
+3. ok.
+4. configure->source code management.
+5. git
+6. repository.
+7. Repository URL:https://github.com/edureka-git/DevOpsClassCodes.git
+8. Build->add build step.
+9. Invoke top-level Maven targets.
+10.Maven Version: mymaven
+11.Goals:   -P metrics pmd:pmd
+//learn about PMD plugin(program and mistake detector)
+12.Save.
+13.Build Now.
+14.Check pmd.xml under workspace/target.
+// xml report is not user friendly, to generate more user friendly trend reports follow the steps:
+15. Manage jenkins->manage plugins.
+16. Search plugin: pmd.
+17. PMD install without restart.
+18. configure CodeReview job.
+19. Post build actions.
+20. choose publish pmd analysis results.
+//provide the path of xml file
+21. PMD results: target/pmd.xml
+22. save and build now.
+23. check the analysis under PMD warnings.
+
+############################ Task 10.03 #############################
+//Job for testing
+1. Create ne job "UnitTest"
+2. Freestyle project.
+3. ok.
+4. configure->source code management->git
+5. Repository URL: https://github.com/edureka-git/DevOpsClassCodes.git
+6. Build->Add build step->top-level maven targets.
+7. Maven version: mymaven
+8. Goals:test
+9. save->Build Now
+10.Build History->Check the console output.
+11.Check the detailed reports at workspace->target->surefire-reports(in the xml files)
+//for generating trend reports
+12. configure UnitTest job
+13. Post-build Actions->Publish JUnit test result reports
+//if the option is not present in your Post-build Action, just install JUnit Plugin.
+14. Test report XMLs: target/surefire-reports/*.xml
+// provide the path of XML files.
+15. Save->Build Now
+16. Check the Test Results.
+############################ Task 10.04 #############################
+1. Create a new job "MetricCheck"
+2. Source code management->git
+3. Repository URL: https://github.com/edureka-git/DevOpsClassCodes.git
+4. Build->Add build step
+5. Invoke top-level maven targets.
+6. Maven Version: mymaven
+7. Goals= cobertura:cobertura -Dcobertura.report.format=xml
+8. Save
+9. Build Now
+10.check workspace->target->site->cobertura->coverage.xml
+// Cobertura tool against your compiled classes to help you determine how well the unit testing and integration testing efforts have been, and can then be used to identify which parts of your Java program are lacking test coverage.
+11. for generate trend reports
+//jenkins->manage jenkins->plugin manager->search cobertura plugin-> check cobertura plugin->install without restart
+12. Configure MetricCheck
+13. Post-build Actions
+14. Publish Cobertura Coverage Reports
+15. Cobertura xml report pattern: target/site/cobertura/coverage.xml
+16. Save
+17. Build Now
+18. Check the Coverage Reports in MetricCheck Job
+
+############################ Task 10.05 #############################
+1. Create a Job "Package"
+2. Freestyle project->Ok
+3. Configure->Source Code Management->git
+4. Repository URL: https://github.com/edureka-git/DevOpsClassCodes.git
+5. Build->Add build step->Top level Maven targets
+6. Maven version : mymaven
+7. Goals:package
+8. Save
+9. Build Now
+10.//var file created under /var/lib/jenkins/workspace/Package/Target/
+############################## Task 10.06 #############################
+//Create pipe-line
+1. Go to Task 10.01 Compile Job.
+2. Configure.
+3. Post-build Actions->Add post-build actions.
+4. Build other projects.
+5. Project to Build: CodeReview.
+6. Save.
+7. Go to CodeReview project->configure.
+8. Build Triggers.
+9. check: Build after other projects are build.
+10.Project to watch : DevCompile.
+11.Post-build actions.
+12.Add post-build actions.
+13.Build other projects.
+14.projects to build:UnitTest
+15.Save.
+16.Go to UnitTest.
+17.Configure.
+18.Build Trigger-> Build after other projects are build.
+19. Project to Watch: CodeReview
+20. Post-Build Actions.
+21. Build Other Projects.
+22. MetricCheck.
+23. Save.
+24. Go to MetricCheck->Configure.
+25. Post-Build Actions.
+26. Projects to build: Package
+27. Build Triggers
+28. Build ofter other projects are build.
+29. Project to watch: MetricCheck.
+30. //No post-build.
+// Start first Job.
+// To install pipeline plugin
+//manage jenkins->manage plugins.
+//search build pipeline plugin
+//check build pipeline, install without restart.
+//after installation click new view at the top beside All, choose Build pipeline view.give the name dev_pipeline
+//select initial job: DevCompile
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
